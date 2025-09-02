@@ -27,17 +27,14 @@ def test_basicflow_01(page, get_target_url):
     """
     page.goto(f"{get_target_url}")
     assert page.title() == "Swag Labs"
-    # assert "Swag Labs" in (page.locator(elements.LOCATOR_LOGIN_PAGETITLE)).text_content()
     expect(page.locator(elements.LOCATOR_LOGIN_PAGETITLE)).to_contain_text('Swag Labs')
     ## 아이디/비밀번호 입력
     page.locator(elements.LOCATOR_LOGIN_IDTXT).fill(testdata.TEST_USERID01)
     page.locator(elements.LOCATOR_LOGIN_PWTXT).fill(testdata.TEST_USERPW)
     ## 로그인 버튼 클릭
     page.locator(elements.LOCATOR_LOGIN_LOGINBTN).click()
-    time.sleep(5)
+    time.sleep(testdata.WAITSECONDS_FOR_COMMON)
     ## 메인페이지 
-    # assert "Swag Labs" == (page.locator(elements.LOCATOR_MAIN_PAGETITLE)).text_content()
-    time.sleep(2)
     page.locator(elements.LOCATOR_MAIN_FIRSTITEMTXT).wait_for(state="visible", timeout=60000)
     expect(page.locator(elements.LOCATOR_MAIN_PAGETITLE)).to_contain_text('Swag Labs')
     # assert 'Sauce Labs Backpack' == (page.locator(elements.LOCATOR_MAIN_FIRSTITEMTXT)).text_content()
@@ -46,7 +43,7 @@ def test_basicflow_01(page, get_target_url):
     # assert '1' == (page.locator(elements.LOCATOR_MAIN_CARTTXT)).text_content()
     expect(page.locator(elements.LOCATOR_MAIN_CARTTXT)).to_contain_text('1')
 
-    time.sleep(2)
+    time.sleep(testdata.WAITSECONDS_FOR_COMMON)
     page.locator(elements.LOCATOR_MAIN_FIRSTITEM_REMOVECARTBTN).click()
     # assert '' == (page.locator(elements.LOCATOR_MAIN_CARTTXT)).text_content()
     expect(page.locator(elements.LOCATOR_MAIN_CARTTXT)).to_have_text('')
@@ -54,6 +51,5 @@ def test_basicflow_01(page, get_target_url):
     ## 공통
     page.get_by_role("button", name=elements.ROLE_COMMON_OPENSIDEBTN).click()
     page.locator(elements.LOCATOR_COMMON_LOGOUTBTN).click()
-    # assert "Swag Labs" == (page.locator(elements.LOCATOR_LOGIN_PAGETITLE)).text_content()
-    time.sleep(10)
+    time.sleep(testdata.WAITSECONDS_FOR_COMMON)
     

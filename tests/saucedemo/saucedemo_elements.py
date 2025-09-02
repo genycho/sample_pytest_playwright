@@ -4,6 +4,7 @@ LOCATOR_LOGIN_PAGETITLE = "#root"
 LOCATOR_LOGIN_IDTXT = '[data-test="username"]'
 LOCATOR_LOGIN_PWTXT = '[data-test="password"]'
 LOCATOR_LOGIN_LOGINBTN='[data-test="login-button"]'
+LOCATOR_LOGIN_MSG = '[data-test="error"]'
 
 ### Main Page ###
 LOCATOR_MAIN_PAGETITLE = '[data-test="primary-header"]'
