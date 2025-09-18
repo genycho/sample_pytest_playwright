@@ -13,11 +13,20 @@
 1')별도 TC로 분리하여 다양한 로그인 실패 상황 parameterize 
 """
 import pytest
+import allure
 import time
 from playwright.sync_api import Page, expect
 import saucedemo_elements as elements
 import saucedemo_testdata as testdata
 
+@allure.title("기본흐름01")
+@allure.description("1)로그인\n 2)첫번째 아이템 카트 담기 \n 3)카트에서 아이템 삭제 \n 4)로그아웃 \n")
+@allure.tag("NewUI", "Essentials", "Basic Flow 01")
+@allure.severity(allure.severity_level.MINOR)
+@allure.label("type", "Web UI Test")
+@allure.link("https://blog.naver.com/genycho/224010219282", name="Reference")
+@allure.issue("BASICFLOW-01")
+@allure.testcase("IT-01-001")
 def test_basicflow_01(page, get_target_url):
     """
     1)로그인 \n
@@ -42,6 +51,7 @@ def test_basicflow_01(page, get_target_url):
     page.locator(elements.LOCATOR_MAIN_FIRSTITEM_ADDTOCARTBTN).click()
     # assert '1' == (page.locator(elements.LOCATOR_MAIN_CARTTXT)).text_content()
     expect(page.locator(elements.LOCATOR_MAIN_CARTTXT)).to_contain_text('1')
+    expect(page.locator(elements.LOCATOR_MAIN_CARTTXT)).to_contain_text('2')
 
     time.sleep(testdata.WAITSECONDS_FOR_COMMON)
     page.locator(elements.LOCATOR_MAIN_FIRSTITEM_REMOVECARTBTN).click()

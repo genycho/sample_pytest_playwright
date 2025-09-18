@@ -59,3 +59,17 @@ playwright install
     1) (로그인 페이지)아이디/비밀번호 넣고 로그인 
     2) (그 다음 페이지)나중에 생각 
     a) 별도 TC로 분리하여 다양한 로그인 실패 상황 parameterize 
+
+## allure-report 생성
+- pytest 실행 시 allure 옵션
+
+- (pytest 실행 시 allure 정보를 allure-results 폴더 내에 생성) 
+
+    pytest ./tests/saucedemo --alluredir ./allure-results
+
+
+- (생성된 정보로 html 리포트 생성) 
+
+    allure generate allure-results --single-file --clean -o allure-report
+
+    (서버 형태로 띄우기) allure serve allure-results
